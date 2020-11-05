@@ -20,6 +20,7 @@ export class MoviesComponent implements OnInit, OnDestroy {
     this.service.isHeader.next(true);
     this.service.show = ShowType.MOVIE;
     this.service.search();
+  
   }
   ngOnDestroy(): void {
     this.sub.unsubscribe();

@@ -21,8 +21,11 @@
                 alt="poster">
             <h1>{{data.original_title}}{{data.name}}</h1>
 
-            <div class="move-info">
-                {{data.runtime}}{{data.number_of_episodes}} | {{data.release_date}}
+            <div *ngIf="data.runtime" class="move-info">
+               <p> runtime: {{data.runtime}} min | rating: {{data.vote_average}}</p>
+            </div>
+            <div *ngIf="data.number_of_episodes" class="move-info">
+                episodes: {{data.number_of_episodes}} | seasons: {{data.number_of_seasons}}
             </div>
             <div class="move-content">
                 <p>{{data.overview}}</p>

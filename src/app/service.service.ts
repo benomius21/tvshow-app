@@ -30,7 +30,7 @@ export class Service {
 
     topMovies(show: string): void {
         const url = `${this.apiUrl}${show}/top_rated?api_key=${this.apiKey}`;
-        this.http.get<{ page: number, results: MovieModel[], total_results: number, total_pages: number }>(url)
+        this.http.get<{ results: MovieModel[], status_message:string}>(url)
             .subscribe(resp => {
                 this.movies = resp.results.slice(0, -10);
                 this.videoData.next(this.movies);

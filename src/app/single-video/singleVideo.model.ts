@@ -1,5 +1,6 @@
 export interface SingleVideoModel {
     id: number;
+    vote_average: number;
     original_title: string;
     overview: string;
     poster_path: string;

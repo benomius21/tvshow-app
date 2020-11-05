@@ -44,6 +44,9 @@ export class SingleVideoComponent implements OnInit, OnDestroy {
     }
     this.subscriptions.push(this.service.trailerData.subscribe(resp => {
       this.video = resp;
+      if(!this.video){
+        return;
+      }
       let url = "https://www.youtube.com/embed/" + this.video.key;
       this.trailer = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }));
