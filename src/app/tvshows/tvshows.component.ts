@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { MovieModel } from '../movies/movies.model';
+import { MovieModel, ResultsModel } from '../movies/movies.model';
 import { Service, ShowType } from '../service.service';
 
 @Component({
@@ -9,13 +9,16 @@ import { Service, ShowType } from '../service.service';
   styleUrls: ['./tvshows.component.css']
 })
 export class TvshowsComponent implements OnInit, OnDestroy {
-  tvShows: MovieModel[];
+  tvShows: ResultsModel[];
   unSub: Subscription;
+  isPicture: boolean = false;
+  
   constructor(private service: Service) { }
 
   ngOnInit(): void {
     this.unSub = this.service.videoData.subscribe(resp => {
       this.tvShows = resp;
+
     });
     this.service.isHeader.next(true);
     this.service.show = ShowType.TV;
