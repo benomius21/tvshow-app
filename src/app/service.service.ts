@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MovieModel, ResultsModel } from './movies/movies.model';
+import { ResultsModel } from './movies/movies.model';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { SingleVideoModel } from './single-video/singleVideo.model';
-import { Params, Router } from '@angular/router';
+import { Params} from '@angular/router';
 import { SearchModel } from './single-video/search.model';
 
 export enum ShowType {
@@ -29,11 +29,15 @@ export class Service {
     constructor(private http: HttpClient) { }
 
     topMovies(show: string): void {
+        if(!this.show){
+            return;
+        }
         const url = `${this.apiUrl}${show}/top_rated?api_key=${this.apiKey}`;
         this.http.get<{ results: ResultsModel[], status_message: string }>(url)
             .subscribe(resp => {
                 this.movies = resp.results.slice(0, -10);
                 this.videoData.next(this.movies);
+                console.log('caooooooo');
             });
     }
 
