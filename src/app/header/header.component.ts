@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       tap(() => this.service.search())
     ).subscribe());
 
-    this.search();
+    // this.search();
   }
 
   search() {
