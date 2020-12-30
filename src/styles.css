@@ -23,6 +23,7 @@ a.switch-button {
 
 a.switch-button:hover {
     background: #99c1de;
+    cursor: pointer;
 }
 
 a.switch-button.active {

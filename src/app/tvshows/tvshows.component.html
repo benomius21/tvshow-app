@@ -1,12 +1,17 @@
 <html>
+
 <body>
-     <div class="wraper">
+    <div class="wraper">
         <div class="container">
-            <div *ngFor = "let tvShow of tvShows" class="item">
+            <div *ngFor="let tvShow of tvShows" class="item">
                 <a [routerLink]="['/tv/'+tvShow.id]">
-                    <div class="image">
-                        <img src="https://image.tmdb.org/t/p/w500/{{tvShow.backdrop_path}}"
-                            class="move-image" alt="poster">
+                    <div *ngIf="tvShow.backdrop_path" class="image">
+                        <img src="https://image.tmdb.org/t/p/w500/{{tvShow.backdrop_path}}" class="move-image"
+                            alt="poster">
+                    </div>
+                    <div *ngIf="!tvShow.backdrop_path" class="image">
+                        <img src="../../assets/pictures/image-not-found.jpg" class="move-image"
+                            alt="poster">
                     </div>
                     <h3 class="move-title">{{tvShow.name}}</h3>
                 </a>

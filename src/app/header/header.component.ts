@@ -9,6 +9,7 @@ import { Service } from '../service.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
+
 export class HeaderComponent implements OnInit, OnDestroy {
   searchForm: FormGroup;
   header = true;
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
 
     this.subscriptions.push(this.service.isHeader.subscribe(resp => {
-       this.header = resp;
+      this.header = resp;
     }));
 
     this.subscriptions.push(this.service.searchKeywordChange.pipe(
