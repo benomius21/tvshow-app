@@ -1,7 +1,5 @@
 import { Location } from '@angular/common';
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -26,19 +24,20 @@ export class SingleVideoComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private location: Location,
     private sanitizer: DomSanitizer,
+
   ) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     const link = this.location.path();
     const editLink = link.split('/');
-    console.log(editLink);
     if (editLink[1] === 'movie') {
       this.service.singleVideo('movie', this.id);
       this.service.getTrailer('movie', this.id);
     } else {
       this.service.singleVideo('tv', this.id);
       this.service.getTrailer('tv', this.id);
+
     }
     this.subscriptions.push(this.service.trailerData.subscribe(resp => {
       this.video = resp;

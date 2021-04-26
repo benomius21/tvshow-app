@@ -18,7 +18,7 @@ export class TvshowsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.unSub = this.service.videoData.subscribe(resp => {
       this.tvShows = resp;
-
+      
     });
     this.service.isHeader.next(true);
     this.service.show = ShowType.TV;

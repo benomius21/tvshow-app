@@ -4,11 +4,11 @@
         <div class="container">
             <div *ngFor="let movie of movies" class="item">
                 <a [routerLink]="['/movie/'+movie.id]">
-                    <div *ngIf="movie.backdrop_path" class="image">
+                    <div *ngIf="movie.backdrop_path">
                         <img src="https://image.tmdb.org/t/p/w500/{{movie.backdrop_path}}"
                             class="move-image" alt="poster">
                     </div>
-                    <div *ngIf="!movie.backdrop_path" class="image">
+                    <div *ngIf="!movie.backdrop_path">
                         <img src="https://image.tmdb.org/t/p/w500/{{movie.backdrop_path}}"
                             class="move-image" alt="poster">
                     </div>
