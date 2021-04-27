@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { MovieModel, ResultsModel } from '../movies/movies.model';
 import { Service, ShowType } from '../service.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { Service, ShowType } from '../service.service';
   styleUrls: ['./tvshows.component.css']
 })
 export class TvshowsComponent implements OnInit, OnDestroy {
-  tvShows: ResultsModel[];
+  tvShows;
   unSub: Subscription;
   isPicture: boolean = false;
   

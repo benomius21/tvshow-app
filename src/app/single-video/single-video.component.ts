@@ -5,7 +5,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Service } from '../service.service';
 import { SearchModel } from './search.model';
-import { SingleVideoModel } from './singleVideo.model';
 
 @Component({
   selector: 'app-single-video',
@@ -13,7 +12,7 @@ import { SingleVideoModel } from './singleVideo.model';
   styleUrls: ['./single-video.component.css']
 })
 export class SingleVideoComponent implements OnInit, OnDestroy {
-  data: SingleVideoModel;
+  data;
   id: Params;
   show: string;
   video: SearchModel;

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ResultsModel } from './movies/movies.model';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { SingleVideoModel } from './single-video/singleVideo.model';
 import { Params} from '@angular/router';
 import { SearchModel } from './single-video/search.model';
 
@@ -10,16 +8,15 @@ export enum ShowType {
     TV = 'tv',
     MOVIE = 'movie'
 }
-
 @Injectable()
 export class Service {
-    singleVideoData: SingleVideoModel;
-    movies: ResultsModel[] = [];
+    singleVideoData;
+    movies:[] = [];
     trailer: SearchModel;
     isHeader = new Subject<boolean>();
     trailerData = new Subject<SearchModel>();
-    singleData = new Subject<SingleVideoModel>();
-    videoData = new BehaviorSubject<ResultsModel[]>(this.movies);
+    singleData = new Subject<{}>();
+    videoData = new BehaviorSubject<[]>(this.movies);
     show: string;
     searchKeywordChange = new BehaviorSubject<string>('');
 
@@ -33,11 +30,10 @@ export class Service {
             return;
         }
         const url = `${this.apiUrl}${show}/top_rated?api_key=${this.apiKey}`;
-        this.http.get<{ results: ResultsModel[], status_message: string }>(url)
+        this.http.get<{ results, status_message: string }>(url)
             .subscribe(resp => {
                 this.movies = resp.results.slice(0, -10);
                 this.videoData.next(this.movies);
-                console.log('caooooooo');
             });
     }
 
@@ -59,7 +55,7 @@ export class Service {
 
     singleVideo(show: string, id: Params): void {
         const url = `${this.apiUrl}${show}/${id}?api_key=${this.apiKey}&language=en-US`;
-        this.http.get<SingleVideoModel>(url)
+        this.http.get<{}>(url)
             .subscribe(resp => {
                 this.singleVideoData = resp;
                 this.singleData.next(this.singleVideoData);

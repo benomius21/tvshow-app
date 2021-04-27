@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Service, ShowType } from '../service.service';
-import { MovieModel, ResultsModel } from './movies.model';
 
 @Component({
   selector: 'app-movies',
@@ -9,7 +8,7 @@ import { MovieModel, ResultsModel } from './movies.model';
   styleUrls: ['./movies.component.css']
 })
 export class MoviesComponent implements OnInit, OnDestroy {
-  movies: ResultsModel[] = [];
+  movies = [];
   sub: Subscription;
   
   constructor(private service: Service) { }
